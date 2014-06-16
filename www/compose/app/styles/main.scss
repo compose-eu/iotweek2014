@@ -1,0 +1,371 @@
+$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+
+/* already included in plain css in index.html */
+/* @import 'sass-bootstrap/lib/bootstrap'; */
+
+body {
+  background: rgb( 241, 241, 241 );
+}
+
+.productoffers {
+    list-style: none;
+    padding: 0 15px;
+}
+
+.hero {
+    margin: 50px 0;
+}
+
+.offer {
+    margin: 10px 0;
+    vertical-align: top;
+    text-align: left;
+}
+
+.offer a:link {
+    color: black;
+}
+
+.navbarlink {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.navbarlink:hover {
+    cursor: pointer;
+}
+
+.navbartext {
+    margin-left: 5px;
+    display: inline-block;
+    padding-bottom: 12px;
+    vertical-align: middle;
+}
+
+#sentimentHistory {
+    background: #323442;
+}
+
+.likebutton {
+    background: transparent url('../images/like.png') no-repeat center/100%;
+    margin-left: 10px;
+}
+
+.dislikebutton {
+    background: transparent url('../images/dislike.png') no-repeat center/100%;
+    margin-left: 10px;
+}
+
+.sharebutton {
+    background: transparent url('../images/share-icon.png') no-repeat center/100%;
+    margin-left: 10px;
+}
+
+.happysad {
+    background: transparent url('../images/happy_sad.png') no-repeat center/70%;
+}
+
+.happy {
+    background: transparent url('../images/happyface.png') no-repeat center/70%;
+}
+
+.sad {
+    background: transparent url('../images/sadface.png') no-repeat center/70%;
+}
+
+.moodWidget {
+    min-height: 200px;
+    display: inline-block;
+    width: 32%;
+}
+
+.moodWidget#dislikeHistory {
+}
+
+.producticon {
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+    border-radius: 100%;
+    border: 2px solid black;
+    width: 70px;
+    height: 70px;
+}
+
+.productlongdescript {
+    font-size: 20px;
+    color: black;
+}
+
+.productdescrip {
+    color: black;
+    display: inline-block;
+    max-width: 180px;
+    vertical-align: top;
+    margin: 0 0 0 5px;
+}
+
+.biginput {
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    font-family: sans-serif;
+    font-weight: 100;
+}
+
+.grapharea {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.hichart {
+    border-radius: 0;
+    height: 200px;
+}
+
+
+h3, h4, h5 {
+    font-family: sans-serif;
+    font-weight: 300;
+}
+
+h3 {
+    font-size: 36px;
+}
+
+h4 {
+    font-size: 28px;
+    padding: 15px 0;
+}
+
+h5 {
+    margin: 10px auto;
+    width: 90%;
+    padding: 10px 0;
+    border-top: 3px solid #dadadc;
+    font-size: 18px;
+}
+
+.attr {
+    margin: 20px auto;
+    padding: 0;
+    display: table;
+    border-spacing: 10px 0;
+}
+
+.attr li {
+    margin: 0 5px;
+    list-style: none;
+    display: table-cell;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 100%;
+    border: 3px solid #242632;
+    color: #242632;
+    background-color: lightyellow;
+    text-align: center;
+    vertical-align: middle;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight:bold;
+    box-shadow: inset 0 0 5px 1px #333;
+}
+
+.attr li div {
+    line-height: 1.5em;
+}
+
+.attr li.fat {
+    background-color: #a5ceee;
+}
+
+.attr li.vitamin {
+    background-color: #ecc2db;
+}
+
+.attr li.salt {
+    background-color: #82d2cc;
+}
+
+.attr li.protein {
+    background-color: #abe0e0;
+}
+
+.attr li.sugar {
+    background-color: #fed690;
+}
+
+.productimage {
+    margin: 20px auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    border: 5px solid rgb(36,38,50);
+    background-color: transparent;
+    background-size: cover;
+    box-shadow: inset 0 0 10px 1px #666;
+}
+
+.notfound {
+    background: transparent url('../images/notfound.png') no-repeat center;
+    background-size: 110%;
+}
+
+
+.darkbar {
+    height: 50px;
+    width:100%;
+    background: #303341;
+    vertical-align: middle;
+    color: white;
+    padding: 12px 7px;
+}
+
+.backicon {
+    background: transparent url('../images/back.png') no-repeat center;
+    background-size: 80%;
+}
+
+.smallicon {
+    background: transparent url('../images/ico.png') no-repeat center/100%;
+}
+
+.btn {
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 22px;
+    color: white;
+    width: 85%;
+}
+
+.btn-green {
+    background-color: #b4c51f;
+}
+
+.btn-pink {
+    background-color: #fd625f;
+}
+
+.btn-blue {
+    background-color: #27568f;
+}
+
+.composelogo {
+    width: 100%;
+    height: 120px;
+    background: transparent url('../images/logo.png') no-repeat center;
+    background-size: 80%;
+}
+
+.scanimage {
+    width: 100%;
+    height: 300px;
+}
+
+.scanqrcode {
+    background: transparent url('../images/qr-code.png') no-repeat center;
+    background-size: 70%;
+}
+
+.scanbarcode {
+    background: transparent url('../images/barcode.png') no-repeat center;
+    background-size: 70%;
+}
+
+.scannfc {
+  background: transparent url('../images/nfc.png') no-repeat center;
+  background-size: 70%;
+}
+
+.hr {
+  border-top: 2px solid black;
+  margin: 20px;
+}
+
+h1 {
+  font-family: sans-serif;
+  color: #303341;
+}
+
+.central {
+  text-align: center;
+  margin-top: -10px;
+}
+
+.pie {
+  display:inline-block;
+  position: relative;
+  border-radius:100%;
+  box-shadow: 0 0 0 10px #9C9DA1;
+}
+
+.corner {
+  background: #242632;
+  width: 120px;
+  height: 120px;;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  border: 10px solid #565763;
+}
+
+.corner:hover{
+  background-color: #A6BE00;
+  cursor: pointer;
+}
+
+.pieleft.pietop {
+  border-radius: 100% 0 0 0;
+  background: #242632 url('../images/qrcode3.png') no-repeat center;
+  background-size: 30%;
+}
+
+.pietop {
+  border-bottom: 2px solid white;
+}
+
+.piebottom {
+  border-top: none;
+}
+
+.pieright {
+  border-left: none;
+}
+
+.pieleft {
+  border-right: 2px solid white;
+}
+
+.pieright.pietop{
+  border-radius: 0% 100% 0% 0%;
+  background: #242632 url('../images/barcode2.png') no-repeat center;
+  background-size: 35%;
+}
+
+.pieleft.piebottom {
+  border-radius: 0% 0% 0% 100%;
+  background: #242632 url('../images/nfc3.png') no-repeat center;
+  background-size: 40%;
+}
+
+.pieright.piebottom {
+  border-radius: 0% 0% 100% 0%;
+  background: #242632 url('../images/compass.png') no-repeat center;
+  background-size: 40%;
+}
+
+.center {
+  background: #A6BE00 url('../images/center3.png') no-repeat center;
+  background-size: 100%;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 100%;
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: 90px;
+  left: 85px;
+  border: 4px solid white;
+}
