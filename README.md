@@ -78,7 +78,7 @@ The be able to recognize the product in EVRYTHNG platform, it needs to have the 
 
 You can adapt the provided python script to create automatically the products and linked them together, as well as asigning the barcode you are going to use. Change the type of barcode accordingly in the code too.
 
-/scanThng-phonegap/www/compose/app/scripts/compose/COMPOSE_hackfest_initialize.py
+/compose-sample-app-iotweek2014/www/compose/app/scripts/compose/COMPOSE_hackfest_initialize.py
 
 Another feature of the SCANTHNG service is that you can link your own web application via a redirection URL. In the provided script there is a dummy redirection configuration but it can be changed depending on your application.
 
@@ -89,10 +89,10 @@ The sample application has been developed with the framework Angular.js (https:/
 Checkout sample app from:
 
 Update API keys in the provided services: 
-/scanThng-phonegap/www/compose/app/scripts/services
+/compose-sample-app-iotweek2014/www/compose/app/scripts/services
 
 You can find the PhoneGap library to scan under
-/scanThng-phonegap/www/js/scanthng-phonegap.js
+/compose-sample-app-iotweek2014/www/js/scanthng-phonegap.js
 
 ## Application Workflow 
 	
