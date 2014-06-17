@@ -1,0 +1,23 @@
+{
+  "name": "compose",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "1.2.6",
+    "json3": "~3.2.6",
+    "es5-shim": "~2.1.0",
+    "jquery": "~1.10.2",
+    "sass-bootstrap": "~3.0.2",
+    "angular-resource": "1.2.6",
+    "angular-cookies": "1.2.6",
+    "angular-sanitize": "1.2.6",
+    "angular-route": "1.2.6",
+    "lodash": "~2.4.1",
+    "highcharts": "~3.0.7",
+    "evrythng-1.2.1.min": "http://cdn.evrythng.net/toolkit/evrythng-js-wrapper/evrythng-1.2.1.min.js",
+    "scanthng": "http://d10ka0m22z5ju5.cloudfront.net/toolkit/scanthng/scanthng-0.6.2.js"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.6",
+    "angular-scenario": "1.2.6"
+  }
+}
