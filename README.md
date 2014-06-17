@@ -12,12 +12,13 @@ The application can be used during the hackathon to build your own ideas on top 
 The components involved are:
 COMPOSE dashboard (glue.thngs)
 SCANTHNG service through EVRYTHNG dashboard (devportal-test.evrythng.net)
+EVRYTHNG engine (api-test.evrythng.net)
 
 Configuration
 
 Before you can use the test application you need to configure the access to the different services, for which you need certain API keys.
 
-## SCANTHNG service  API key
+## SCANTHNG and EVRYTHNG API key
 
 To access the scanthng service you need an application key inside the EVRYTHNG ENGINE platform:
 
