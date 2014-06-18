@@ -17,52 +17,59 @@
 
     <!-- Custom styles for this template -->
     <link href="assets/css/main.css" rel="stylesheet">
-    <link href="assets/css/colors/color-74c9be.css" rel="stylesheet">    
+    <link href="assets/css/colors/color-74c9be.css" rel="stylesheet">
     <link href="assets/css/animations.css" rel="stylesheet">
     <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-    
-    
+    <link href="assets/css/app.css" rel="stylesheet">
+
+
     <!-- JavaScripts needed at the beginning
     ================================================== -->
     <script type="text/javascript" src="http://alvarez.is/demo/marco/assets/js/twitterFetcher_v10_min.js"></script>
 
     <!-- MAP SCRIPT - ALL CONFIGURATION IS PLACED HERE - VIEW OUR DOCUMENTATION FOR FURTHER INFORMATION -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
+    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
     <script type="text/javascript">
         // When the window has finished loading create our google map below
         google.maps.event.addDomListener(window, 'load', init);
-    
+
         function init() {
             // Basic options for a simple Google Map
             // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
             var mapOptions = {
                 // How zoomed in you want the map to start at (always required)
                 zoom: 11,
-                
+
                 scrollwheel: false,
 
                 // The latitude and longitude to center the map (always required)
                 center: new google.maps.LatLng(40.6700, -73.9400), // New York
 
-                // How you would like to style the map. 
+                // How you would like to style the map.
                 // This is where you would paste any style found on Snazzy Maps.
-                styles: [	{		featureType:'water',		stylers:[{color:'#74c9be'},{visibility:'on'}]	},{		featureType:'landscape',		stylers:[{color:'#f2f2f2'}]	},{		featureType:'road',		stylers:[{saturation:-100},{lightness:45}]	},{		featureType:'road.highway',		stylers:[{visibility:'simplified'}]	},{		featureType:'road.arterial',		elementType:'labels.icon',		stylers:[{visibility:'off'}]	},{		featureType:'administrative',		elementType:'labels.text.fill',		stylers:[{color:'#444444'}]	},{		featureType:'transit',		stylers:[{visibility:'off'}]	},{		featureType:'poi',		stylers:[{visibility:'off'}]	}]
+                styles: [ {   featureType:'water',    stylers:[{color:'#74c9be'},{visibility:'on'}] },{   featureType:'landscape',    stylers:[{color:'#f2f2f2'}] },{   featureType:'road',   stylers:[{saturation:-100},{lightness:45}]  },{   featureType:'road.highway',   stylers:[{visibility:'simplified'}] },{   featureType:'road.arterial',    elementType:'labels.icon',    stylers:[{visibility:'off'}]  },{   featureType:'administrative',   elementType:'labels.text.fill',   stylers:[{color:'#444444'}] },{   featureType:'transit',    stylers:[{visibility:'off'}]  },{   featureType:'poi',    stylers:[{visibility:'off'}]  }]
             };
 
-            // Get the HTML DOM element that will contain your map 
+            // Get the HTML DOM element that will contain your map
             // We are using a div with id="map" seen below in the <body>
             var mapElement = document.getElementById('map');
 
             // Create the Google Map using out element and options defined above
             var map = new google.maps.Map(mapElement, mapOptions);
         }
-    </script>
-    
-    
+    </script> -->
+
+
     <!-- Main Jquery & Hover Effects. Should load first -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="assets/js/hover_pack.js"></script>
-    
+
+    <!-- Morris JS -->
+    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+    <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -74,153 +81,194 @@
   <body>
 
 
-	<! ========== HEADERWRAP ==================================================================================================== 
-	=============================================================================================================================>
+  <!-- ========== Headerwrap ========== -->
     <div id="headerwrap">
-    	<div class="container">
-			<div class="row centered">
-				<div class="col-lg-8 col-lg-offset-2 mt">
-					<h1 class="animation slideDown">Imagine a world where you don't have to stay in a poorly aired room ever again!</h1>
-    				<p class="mt"><button type="button" class="btn btn-cta btn-lg">LEARN MORE</button></p>
-				</div>
-				
-			</div><!-- /row -->
-    	</div><!-- /container -->
+      <div class="container">
+      <div class="row centered">
+        <div class="col-lg-8 col-lg-offset-2 mt">
+          <h1 class="animation slideDown">Imagine a world where you don't have to stay in a poorly aired room ever again!</h1>
+            <p class="mt"><button type="button" class="btn btn-cta btn-lg">LEARN MORE</button></p>
+        </div>
+
+      </div><!-- /row -->
+      </div><!-- /container -->
     </div> <!-- /headerwrap -->
 
-	<! ========== HeatMap SECTION =============================================================================================== 
-	=============================================================================================================================>    
+  <!-- ========== HeatMap SECTION ========== -->
 
-	<div id="white">
-		<div class="container">
-	    	<div class="row mt">
-	    		<div class="col-lg-4 col-lg-offset-4 centered">
-	    			<h3>The HeatMap</h3>
-	    			<hr>
-	    		</div>
-	    	</div><! --/row -->
-		</div><!-- /container -->
-	<div id="map"></div>	
-	</div><!-- /white -->
-
-	<! ========== FEATURED ICONS ================================================================================================ 
-	=============================================================================================================================>    
+  <div id="white">
     <div class="container">
-    	<div class="row mt centered ">
-			<div class="col-lg-4 col-lg-offset-4">
-				<h3>We call it Airy!</h3>
-				<hr>
-			</div>
-		</div><!-- /row -->
+        <div class="row mt">
+          <div class="col-lg-4 col-lg-offset-4 centered">
+            <h3>The Readings</h3>
+            <hr>
+          </div>
+        </div><!-- /row -->
 
-    	<div class="row mt">
-    		<div class="col-lg-4 centered si">
-    			<i class="fa fa-flask"></i>
-    			<h4>Glue.things</h4>
-    			<p>Glue.things Smart Object Manager helped to create and manage the sensors and their data.</p>
-    		</div>
-    		<div class="col-lg-4 centered si">
-    			<i class="fa fa-eye"></i>
-    			<h4>servIoTicy</h4>
-    			<p>The servIoTicy allows to store and access the sensor data via a JSON REST API.</p>
-    		</div>
-    		<div class="col-lg-4 centered si">
-    			<i class="fa fa-mobile"></i>
-    			<h4>Spark</h4>
-    			<p>The spark sensors are measuring the air conditions in different rooms.</p>
-    		</div>    	
-    	</div><!-- /row -->
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#temp" data-toggle="tab">Temperature</a></li>
+          <li><a href="#co2" data-toggle="tab">CO2</a></li>
+          <li><a href="#aq" data-toggle="tab">Air Quality</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="temp">
+            <div class="row align-center">
+              <div id="heatmapArea" class="heatmap temp">
+              </div>
+            </div> <!-- /row -->
+            <div class="row">
+              <div class="col-xl-3 col-lg-6 ludgate temp"></div>
+              <div class="col-xl-3 col-lg-6 america temp"></div>
+              <div class="col-xl-3 col-lg-6 warwick temp"></div>
+              <div class="col-xl-3 col-lg-6 salisbury temp"></div>
+            </div> <!-- /row -->
+          </div>
+          <div class="tab-pane" id="co2">
+            <div class="row align-center">
+              <div id="heatmapArea2" class="heatmap co2">
+              </div>
+            </div> <!-- /row -->
+            <div class="row">
+              <div class="col-xl-3 col-lg-6 ludgate co2"></div>
+              <div class="col-xl-3 col-lg-6 america co2"></div>
+              <div class="col-xl-3 col-lg-6 warwick co2"></div>
+              <div class="col-xl-3 col-lg-6 salisbury co2"></div>
+            </div> <!-- /row -->
+          </div>
+          <div class="tab-pane" id="aq">
+            <div class="row align-center">
+              <div id="heatmapArea3" class="heatmap aq">
+              </div>
+            </div> <!-- /row -->
+            <div class="row">
+              <div class="col-xl-3 col-lg-6 ludgate aq"></div>
+              <div class="col-xl-3 col-lg-6 america aq"></div>
+              <div class="col-xl-3 col-lg-6 warwick aq"></div>
+              <div class="col-xl-3 col-lg-6 salisbury aq"></div>
+            </div> <!-- /row -->
+          </div>
+        </div>
+    </div><!-- /container -->
+  <!-- <div id="map"></div> -->
+  </div><!-- /white -->
+
+   <!-- ========== Feautured Icons ========== -->
+    <div class="container">
+      <div class="row mt centered ">
+      <div class="col-lg-4 col-lg-offset-4">
+        <h3>We call it Airy!</h3>
+        <hr>
+      </div>
+    </div><!-- /row -->
+
+      <div class="row mt">
+        <div class="col-lg-4 centered si">
+          <i class="fa fa-flask"></i>
+          <h4>Glue.things</h4>
+          <p>Glue.things Smart Object Manager helped to create and manage the sensors and their data.</p>
+        </div>
+        <div class="col-lg-4 centered si">
+          <i class="fa fa-eye"></i>
+          <h4>servIoTicy</h4>
+          <p>The servIoTicy allows to store and access the sensor data via a JSON REST API.</p>
+        </div>
+        <div class="col-lg-4 centered si">
+          <i class="fa fa-mobile"></i>
+          <h4>Spark</h4>
+          <p>The spark sensors are measuring the air conditions in different rooms.</p>
+        </div>
+      </div><!-- /row -->
     </div><!-- /container -->
 
+   <!-- ========== Footer ========== -->
 
+  <div id="white">
+    <div class="container">
+        <div class="row mt">
+          <div class="col-lg-4 col-lg-offset-4 centered">
+            <h3>Our Team</h3>
+            <hr>
+          </div>
+        </div><!-- /row -->
 
-	<! ========== FOOTER ======================================================================================================== 
-	=============================================================================================================================>    
-	
-	<div id="white">
-		<div class="container">
-	    	<div class="row mt">
-	    		<div class="col-lg-4 col-lg-offset-4 centered">
-	    			<h3>Our Team</h3>
-	    			<hr>
-	    		</div>
-	    	</div><! --/row -->
-			
-			<div class="row">
-				<div class="col-lg-2 centered">
-					<div class="members">
-					  <div class="team-info">
-					    <div class="subhead">Evrythng</div>
-					    <h2 class="team-name">Iker</h2>
-					    <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p>
-					  </div>
-					</div>
-				</div><!-- /col-lg-4 -->
-				
-				<div class="col-lg-2 centered">
-					<div class="members">
-					  <div class="team-info">
-					    <div class="subhead">Rory</div>
-					    <h2 class="team-name">Cirkit</h2>
-					    <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p>
-					  </div>
-					</div>
-				</div><!-- /col-lg-4 -->
-				
-				<div class="col-lg-2 centered">
-					<div class="members">
-					  <div class="team-info">
-					    <div class="subhead">Cirkit</div>
-					    <h2 class="team-name">Jason</h2>
-					    <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p>
-					  </div>
-					</div>
-				</div><!-- /col-lg-4 -->
+      <div class="row">
+        <div class="col-lg-2 col-lg-offset-1 centered">
+          <div class="members">
+            <div class="team-info">
+              <div class="subhead">Evrythng</div>
+              <h2 class="team-name">Iker</h2>
+              <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p>
+            </div>
+          </div>
+        </div><!-- /col-lg-4 -->
 
-				<div class="col-lg-2 centered">
-					<div class="members">
-					  <div class="team-info">
-					    <div class="subhead">The open university</div>
-					    <h2 class="team-name">Luca</h2>
-					    <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p>
-					  </div>
-					</div>
-				</div><!-- /col-lg-4 -->
-				<div class="col-lg-2 centered">
-					<div class="members">
-					  <div class="team-info">
-					    <div class="subhead">Fraunhofer FOKUS</div>
-					    <h2 class="team-name">Ferit</h2>
-					    <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p>
-					  </div>
-					</div>
-				</div><!-- /col-lg-4 -->									
+        <div class="col-lg-2 centered">
+          <div class="members">
+            <div class="team-info">
+              <div class="subhead">Cirkit</div>
+              <h2 class="team-name">Rory</h2>
+              <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p>
+            </div>
+          </div>
+        </div><!-- /col-lg-4 -->
 
-			</div><! --/row -->	
-		</div><! --/container -->
-	</div><! --/white -->
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
+        <div class="col-lg-2 centered">
+          <div class="members">
+            <div class="team-info">
+              <div class="subhead">Cirkit</div>
+              <h2 class="team-name">Jason</h2>
+              <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p>
+            </div>
+          </div>
+        </div><!-- /col-lg-4 -->
+
+        <div class="col-lg-2 centered">
+          <div class="members">
+            <div class="team-info">
+              <div class="subhead">The open university</div>
+              <h2 class="team-name">Luca</h2>
+              <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p>
+            </div>
+          </div>
+        </div><!-- /col-lg-4 -->
+        <div class="col-lg-2 centered">
+          <div class="members">
+            <div class="team-info">
+              <div class="subhead">Fraunhofer FOKUS</div>
+              <h2 class="team-name">Ferit</h2>
+              <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p>
+            </div>
+          </div>
+        </div><!-- /col-lg-4 -->
+
+      </div><!-- /row -->
+    </div><!-- /container -->
+  </div><!-- /white -->
+    <!-- ========== Bootstrap Core JS ========== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/retina.js"></script>
 
 
-  	<script>
-		$(window).scroll(function() {
-			$('.si').each(function(){
-			var imagePos = $(this).offset().top;
-	
-			var topOfWindow = $(window).scrollTop();
-				if (imagePos < topOfWindow+400) {
-					$(this).addClass("slideUp");
-				}
-			});
-		});
-	</script>    
+    <script>
+    $(window).scroll(function() {
+      $('.si').each(function(){
+      var imagePos = $(this).offset().top;
 
+      var topOfWindow = $(window).scrollTop();
+        if (imagePos < topOfWindow+400) {
+          $(this).addClass("slideUp");
+        }
+      });
+    });
+  </script>
 
+  <script src="assets/js/heatmap.js"></script>
+  <!-- Custom JS -->
+  <script src="assets/js/app.js"></script>
 
-  
   </body>
 </html>

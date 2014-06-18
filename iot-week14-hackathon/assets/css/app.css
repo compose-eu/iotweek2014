@@ -1,0 +1,17 @@
+.align-center {
+  text-align: center;
+}
+
+.heatmap {
+  width: 789px;
+  display: inline-block;
+  padding: 0;
+  height: 400px;
+  margin-top:50px;
+  position: relative;
+}
+
+canvas {
+  background-image: url(../img/iot-week-map.jpg);
+  border: 1px solid #ccc;
+}
