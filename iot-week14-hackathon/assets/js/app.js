@@ -16,11 +16,6 @@ $(document).ready(function() {
 
     fillGraphs(tabType);
   });
-
-  // var heatmaps = $('.main-map');
-  // for(var i = 0; i < heatmaps.length; i++) {
-  //   setupHeatmap(heatmaps[i]);
-  // }
 });
 
 function setHeader(xhr) {
@@ -59,7 +54,7 @@ function fillGraphs(tabType) {
     type: 'GET',
     dataType: 'json',
     success: function() { console.log(data); },
-    error: function() { },
+    error: function() { console.log('error!'); },
     beforeSend: setHeader
   });
 
