@@ -25,7 +25,7 @@
 
     <!-- JavaScripts needed at the beginning
     ================================================== -->
-    <script type="text/javascript" src="http://alvarez.is/demo/marco/assets/js/twitterFetcher_v10_min.js"></script>
+    <!-- <script type="text/javascript" src="http://alvarez.is/demo/marco/assets/js/twitterFetcher_v10_min.js"></script> -->
 
     <!-- MAP SCRIPT - ALL CONFIGURATION IS PLACED HERE - VIEW OUR DOCUMENTATION FOR FURTHER INFORMATION -->
     <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
@@ -108,7 +108,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
           <li class="active"><a href="#temp" data-toggle="tab">Temperature</a></li>
-          <li><a href="#co2" data-toggle="tab">CO2</a></li>
+          <li><a href="#press" data-toggle="tab">Pressure</a></li>
           <li><a href="#aq" data-toggle="tab">Air Quality</a></li>
         </ul>
 
@@ -120,22 +120,46 @@
               </div>
             </div> <!-- /row -->
             <div class="row">
-              <div class="col-xl-3 col-lg-6 ludgate temp"></div>
-              <div class="col-xl-3 col-lg-6 america temp"></div>
-              <div class="col-xl-3 col-lg-6 warwick temp"></div>
-              <div class="col-xl-3 col-lg-6 salisbury temp"></div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="text-xs" style="margin: 5px 0;">Ludgate</div>
+                <div class="ludgate temp graph" id="ludgate-temp" style="height: 230px;"></div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="text-xs" style="margin: 5px 0;">America</div>
+                <div class="america temp graph" id="america-temp" style="height: 230px;"></div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="text-xs" style="margin: 5px 0;">Warwick</div>
+                <div class="warwick temp graph" id="warwick-temp" style="height: 230px;"></div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="text-xs" style="margin: 5px 0;">Salisbury</div>
+                <div class="salisbury temp graph" id="salisbury-temp" style="height: 230px;"></div>
+              </div>
             </div> <!-- /row -->
           </div>
-          <div class="tab-pane" id="co2">
+          <div class="tab-pane" id="press">
             <div class="row align-center">
-              <div id="heatmapArea2" class="heatmap co2">
+              <div id="heatmapArea2" class="heatmap press">
               </div>
             </div> <!-- /row -->
             <div class="row">
-              <div class="col-xl-3 col-lg-6 ludgate co2"></div>
-              <div class="col-xl-3 col-lg-6 america co2"></div>
-              <div class="col-xl-3 col-lg-6 warwick co2"></div>
-              <div class="col-xl-3 col-lg-6 salisbury co2"></div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="text-xs" style="margin: 5px 0;">Ludgate</div>
+                <div class="ludgate press graph" id="ludgate-press" style="height: 230px;"></div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="text-xs" style="margin: 5px 0;">America</div>
+                <div class="america press graph" id="america-press" style="height: 230px;"></div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="text-xs" style="margin: 5px 0;">Warwick</div>
+                <div class="warwick press graph" id="warwick-press" style="height: 230px;"></div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="text-xs" style="margin: 5px 0;">Salisbury</div>
+                <div class="salisbury press graph" id="salisbury-press" style="height: 230px;"></div>
+              </div>
             </div> <!-- /row -->
           </div>
           <div class="tab-pane" id="aq">
@@ -144,10 +168,22 @@
               </div>
             </div> <!-- /row -->
             <div class="row">
-              <div class="col-xl-3 col-lg-6 ludgate aq"></div>
-              <div class="col-xl-3 col-lg-6 america aq"></div>
-              <div class="col-xl-3 col-lg-6 warwick aq"></div>
-              <div class="col-xl-3 col-lg-6 salisbury aq"></div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="text-xs" style="margin: 5px 0;">Ludgate</div>
+                <div class="ludgate aq graph" id="ludgate-aq" style="height: 230px;"></div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="text-xs" style="margin: 5px 0;">America</div>
+                <div class="america aq graph" id="america-aq" style="height: 230px;"></div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="text-xs" style="margin: 5px 0;">Warwick</div>
+                <div class="warwick aq graph" id="warwick-aq" style="height: 230px;"></div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="text-xs" style="margin: 5px 0;">Salisbury</div>
+                <div class="salisbury aq graph" id="salisbury-aq" style="height: 230px;"></div>
+              </div>
             </div> <!-- /row -->
           </div>
         </div>
@@ -267,6 +303,7 @@
   </script>
 
   <script src="assets/js/heatmap.js"></script>
+  <script src="assets/js/moment.min.js"></script>
   <!-- Custom JS -->
   <script src="assets/js/app.js"></script>
 

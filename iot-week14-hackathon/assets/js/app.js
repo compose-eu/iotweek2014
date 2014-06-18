@@ -19,7 +19,7 @@ $(document).ready(function() {
 });
 
 function setHeader(xhr) {
-  xhr.setRequestHeader('access_token', 'NDJkODA3MGEtOWU1ZS00YTczLThiNmEtZDk0Y2IwMWFmYWM2NDFjNmZjMjMtMmU3NS00ZDM3LWIwMWItMDFmZjJjM2Q4Y2My');
+  xhr.setRequestHeader('authorization', 'NDJkODA3MGEtOWU1ZS00YTczLThiNmEtZDk0Y2IwMWFmYWM2NDFjNmZjMjMtMmU3NS00ZDM3LWIwMWItMDFmZjJjM2Q4Y2My');
 }
 
 function initGraphs() {
@@ -47,13 +47,59 @@ function initGraphs() {
 }
 
 function fillGraphs(tabType) {
-  console.log('Would fill graphs for tab type ' + tabType);
+  var tabTypeInCompose = tabType;
+  if(tabType === 'aq') {
+    tabTypeInCompose = 'air-quality';
+  }
+  if(tabType === 'temp') {
+    tabTypeInCompose = 'temperature';
+  }
+  if(tabType === 'press') {
+    tabTypeInCompose = 'pressure';
+  }
 
   $.ajax({
-    url: 'http://api.servioticy.com/14030227889898e0ab56d3e5f4d5f8ce9eb724b80b703/streams/room-condition/',
+    url: 'http://api.servioticy.com/140310375942706d56d0216a94e53be95b679d6b3db7e/streams/room-condition',
     type: 'GET',
     dataType: 'json',
-    success: function() { console.log(data); },
+    success: function(returned) {
+      if(returned && returned.data) {
+        var data = returned.data;
+        var dataPoints = [];
+        for(var i = 0; i < data.length; i+= 5) {
+          if(data[i].channels && data[i].channels[tabTypeInCompose]) {
+            dataPoints.push({ timestamp: data[i].lastUpdate, value: data[i].channels[tabTypeInCompose]['current-value'] });
+          }
+        }
+
+        console.log(dataPoints);
+        Morris.Line({
+          element: 'america-' + tabType,
+          data: dataPoints,
+          xkey: 'timestamp',
+          ykeys: ['value'],
+          labels: [tabTypeInCompose],
+          lineColors: ['#fff'],
+          lineWidth: 2,
+          pointSize: 4,
+          gridLineColor: 'rgba(255,255,255,.5)',
+          resize: true,
+          gridTextColor: '#fff',
+          xLabels: "15min",
+          xLabelFormat: function(d) {
+            return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec'][d.getMonth()] + ' ' + d.getDate() + ' - ' + d.getHours() + ':' + d.getMinutes();
+          },
+          dateFormat: function(d) {
+            d = new Date(d);
+            console.log(d.getTime());
+            return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec'][d.getMonth()] + ' ' + d.getDate() + ' - ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+          }
+        });
+      }
+      else {
+        console.log('No data returned.');
+      }
+    },
     error: function() { console.log('error!'); },
     beforeSend: setHeader
   });
