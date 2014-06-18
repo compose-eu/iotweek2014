@@ -1,5 +1,7 @@
+var rooms = {};
+
 $(document).ready(function() {
-  initGraphs();
+  init();
 
   // Initialise first tab (temperature) on page load
   setupHeatmap($('#heatmapArea')[0]);
@@ -22,31 +24,44 @@ function setHeader(xhr) {
   xhr.setRequestHeader('authorization', 'NDJkODA3MGEtOWU1ZS00YTczLThiNmEtZDk0Y2IwMWFmYWM2NDFjNmZjMjMtMmU3NS00ZDM3LWIwMWItMDFmZjJjM2Q4Y2My');
 }
 
-function initGraphs() {
-    var graphs = {};
+function init() {
+    rooms.list = ['ludgate', 'america', 'salisbury']; //'warwick',
 
-    graphs.ludgate = {};
-    graphs.ludgate.temp = $('.ludgate.temp');
-    graphs.ludgate.co2 = $('.ludgate.co2');
-    graphs.ludgate.aq = $('.ludgate.aq');
+    rooms.ludgate = {};
+    rooms.ludgate.name = 'ludgate';
+    rooms.ludgate.apiCode = '140310375942706d56d0216a94e53be95b679d6b3db7e';
+    rooms.ludgate.temp = $('.ludgate.temp');
+    rooms.ludgate.co2 = $('.ludgate.co2');
+    rooms.ludgate.aq = $('.ludgate.aq');
 
-    graphs.america = {};
-    graphs.america.temp = $('.america.temp');
-    graphs.america.co2 = $('.america.co2');
-    graphs.america.aq = $('.america.aq');
+    rooms.america = {};
+    rooms.america.name = 'america';
+    rooms.america.apiCode = '140310325466366d226ff41f64f369322c36af1290a71';
+    rooms.america.temp = $('.america.temp');
+    rooms.america.co2 = $('.america.co2');
+    rooms.america.aq = $('.america.aq');
 
-    graphs.warwick = {};
-    graphs.warwick.temp = $('.warwick.temp');
-    graphs.warwick.co2 = $('.warwick.co2');
-    graphs.warwick.aq = $('.warwick.aq');
+    rooms.warwick = {};
+    rooms.warwick.name = 'warwick';
+    rooms.warwick.temp = $('.warwick.temp');
+    rooms.warwick.co2 = $('.warwick.co2');
+    rooms.warwick.aq = $('.warwick.aq');
 
-    graphs.salisbury = {};
-    graphs.salisbury.temp = $('.salisbury.temp');
-    graphs.salisbury.co2 = $('.salisbury.co2');
-    graphs.salisbury.aq = $('.salisbury.aq');
+    rooms.salisbury = {};
+    rooms.salisbury.name = 'salisbury';
+    rooms.salisbury.apiCode = '1403106555662a47afeaac19941b68a0a807ea9764cce';
+    rooms.salisbury.temp = $('.salisbury.temp');
+    rooms.salisbury.co2 = $('.salisbury.co2');
+    rooms.salisbury.aq = $('.salisbury.aq');
 }
 
 function fillGraphs(tabType) {
+  for(var roomIte = 0; roomIte < rooms.list.length; roomIte++) {
+    fillGraphForRoom(rooms[rooms.list[roomIte]], tabType);
+  }
+}
+
+function getTabTypeInCompose(tabType) {
   var tabTypeInCompose = tabType;
   if(tabType === 'aq') {
     tabTypeInCompose = 'air-quality';
@@ -58,23 +73,35 @@ function fillGraphs(tabType) {
     tabTypeInCompose = 'pressure';
   }
 
+  return tabTypeInCompose;
+}
+
+function fillGraphForRoom(room, tabType) {
+  var tabTypeInCompose = getTabTypeInCompose(tabType);
+
   $.ajax({
-    url: 'http://api.servioticy.com/140310375942706d56d0216a94e53be95b679d6b3db7e/streams/room-condition',
+    url: 'http://api.servioticy.com/' + room.apiCode + '/streams/room-condition',
     type: 'GET',
     dataType: 'json',
     success: function(returned) {
       if(returned && returned.data) {
         var data = returned.data;
+
         var dataPoints = [];
-        for(var i = 0; i < data.length; i+= 5) {
+        //var iInc = data.length < 30 ? 1 : data.length / (data.length / 10);
+        //for(var i = 0; i < data.length - iInc - 1; i+= iInc) {
+        for(var i = 0; i < data.length; i++) {
           if(data[i].channels && data[i].channels[tabTypeInCompose]) {
-            dataPoints.push({ timestamp: data[i].lastUpdate, value: data[i].channels[tabTypeInCompose]['current-value'] });
+            var date = moment(data[i].lastUpdate, 'X');
+
+            var dateTime = date.format("YYYY-MM-DD HH:mm:ss");
+
+            dataPoints.push({ timestamp: dateTime, value: data[i].channels[tabTypeInCompose]['current-value'] });
           }
         }
 
-        console.log(dataPoints);
         Morris.Line({
-          element: 'america-' + tabType,
+          element: room.name + '-' + tabType,
           data: dataPoints,
           xkey: 'timestamp',
           ykeys: ['value'],
@@ -85,14 +112,12 @@ function fillGraphs(tabType) {
           gridLineColor: 'rgba(255,255,255,.5)',
           resize: true,
           gridTextColor: '#fff',
-          xLabels: "15min",
           xLabelFormat: function(d) {
-            return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec'][d.getMonth()] + ' ' + d.getDate() + ' - ' + d.getHours() + ':' + d.getMinutes();
+            return d.getDate() + '/' + (d.getMonth() + 1) + ' - ' + d.getHours() + ':' + d.getMinutes();
           },
           dateFormat: function(d) {
             d = new Date(d);
-            console.log(d.getTime());
-            return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec'][d.getMonth()] + ' ' + d.getDate() + ' - ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+            return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec'][d.getMonth()] + ' ' + d.getDate() + ' - ' + d.getHours() + ':' + d.getMinutes();
           }
         });
       }
@@ -103,31 +128,6 @@ function fillGraphs(tabType) {
     error: function() { console.log('error!'); },
     beforeSend: setHeader
   });
-
-  // $.getJSON('/devices/' + $('#deviceIdBox').val() + '/data', function(results) {
-  //   console.log(results);
-  //   Morris.Line({
-  //     element: 'hero-graph',
-  //     data: results,
-  //     xkey: 'timestamp',
-  //     ykeys: ['v'],
-  //     labels: ['Temperature'],
-  //     lineColors: ['#fff'],
-  //     lineWidth: 2,
-  //     pointSize: 4,
-  //     gridLineColor: 'rgba(255,255,255,.5)',
-  //     resize: true,
-  //     gridTextColor: '#fff',
-  //     xLabels: "15min",
-  //     xLabelFormat: function(d) {
-  //       return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec'][d.getMonth()] + ' ' + d.getDate() + ' - ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
-  //     },
-  //     // dateFormat: function(d) {
-  //     //   d = new Date(d);
-  //     //   return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec'][d.getMonth()] + ' ' + d.getDate();
-  //     // }
-  //   });
-  // });
 }
 
 function setupHeatmap(element) {
