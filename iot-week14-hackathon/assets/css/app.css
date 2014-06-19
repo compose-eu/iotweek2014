@@ -55,3 +55,7 @@ canvas {
 .mt.spesh {
   margin-bottom:25px;
 }
+
+.sr, .sl {
+  visibility: hidden;
+}
