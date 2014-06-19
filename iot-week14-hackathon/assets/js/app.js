@@ -183,7 +183,7 @@ function getHeatmapData(room) {
         console.log(room.name, totalScore);
 
         var count = 0;
-        for(var x = room.x; x < room.x + room.width; x += 40) {
+        for(var x = room.x + 30; x < room.x + room.width - 5; x += 40) {
           for(var y = room.y + 30; y < room.y + room.length - 10; y += 20) {
             heatmap.store.addDataPoint(x, y, totalScore);
             count++;
