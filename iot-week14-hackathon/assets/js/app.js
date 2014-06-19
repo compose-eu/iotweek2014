@@ -2,19 +2,43 @@ var rooms = {};
 var tabTypes = ['aq', 'temp', 'press'];
 
 //creates and initializes the heatmap
-var heatmap;
+var heatmap, heatmapHistorical;
+
+var historicalCounter = 0;
+var historicalData = [
+  { time: '12 midnight', ludgate: 16, america: 17, warwick: 16, salisbury: 15 },
+  { time: '2 am', ludgate: 15, america: 17, warwick: 17, salisbury: 15 },
+  { time: '4 am', ludgate: 16, america: 16, warwick: 17, salisbury: 15 },
+  { time: '6 am', ludgate: 17, america: 17, warwick: 18, salisbury: 16 },
+  { time: '8 am', ludgate: 18, america: 21, warwick: 18, salisbury: 16 },
+  { time: '10 am', ludgate: 22, america: 26, warwick: 20, salisbury: 20 },
+  { time: '12 noon', ludgate: 24, america: 26, warwick: 23, salisbury: 20 },
+  { time: '2 pm', ludgate: 24, america: 28, warwick: 24, salisbury: 20 },
+  { time: '4 pm', ludgate: 24, america: 30, warwick: 24, salisbury: 22 },
+  { time: '6 pm', ludgate: 23, america: 28, warwick: 21, salisbury: 21 },
+  { time: '8 pm', ludgate: 21, america: 20, warwick: 18, salisbury: 18 },
+  { time: '10 pm', ludgate: 17, america: 18, warwick: 16, salisbury: 15 }
+];
+
 
 $(document).ready(function() {
   init();
 
   // Initialise first tab (temperature) on page load
-  setupHeatmap($('#heatmapArea')[0]);
+  setupHeatmap();
   fillGraphs('temp');
 
   // Act on change of tab
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  $('.map-tabs a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     var tabType = $(e.target).attr('href').replace('#', '');
+    if(tabType == 'hist') {
+      setupHistoricalHeatmap();
+    }
+  });
 
+  // Act on change of graph tab
+  $('.graph-tabs a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    var tabType = $(e.target).attr('href').replace('#', '');
     fillGraphs(tabType);
   });
 });
@@ -180,7 +204,6 @@ function getHeatmapData(room) {
 
         var totalScore = (0.00002 * room.data.press) + (0.6 * room.data.temp) + (1.2 * room.data.aq);
         room.totalScore = totalScore;
-        console.log(room.name, totalScore);
 
         var count = 0;
         for(var x = room.x + 30; x < room.x + room.width - 5; x += 40) {
@@ -189,8 +212,6 @@ function getHeatmapData(room) {
             count++;
           }
         }
-        console.log('count for ' + room.name + ': ' + count);
-        console.log(heatmap.store.exportDataSet());
         return heatmapData;
       }
       else {
@@ -202,12 +223,60 @@ function getHeatmapData(room) {
   });
 }
 
-function setupHeatmap(element) {
+function setupHeatmap() {
   for(var i = 0; i < rooms.list.length; i++) {
     var room = rooms[rooms.list[i]];
     room.heatmapData = getHeatmapData(room);
   }
+}
 
+function setupHistoricalHeatmap() {
+  var heatmapConfigHist = {
+    element: $("#heatmapAreaHist")[0],
+    radius: 30,
+    opacity: 50
+  };
+
+  heatmapHistorical = h337.create(heatmapConfigHist);
+  populateHistoricalData();
+  window.setInterval(function() { populateHistoricalData() }, 1500);
+}
+
+function populateHistoricalData() {
+  var historicalHeatmapData = { max: 27, data: [] };
+
+  console.log(historicalCounter);
+  if(historicalCounter > historicalData.length - 1) {
+    console.log('resetting');
+    historicalCounter = 0;
+  }
+
+  for(var i = 0; i < rooms.list.length; i++) {
+    var room = rooms[rooms.list[i]];
+    for(var x = room.x + 30; x < room.x + room.width - 5; x += 40) {
+      for(var y = room.y + 30; y < room.y + room.length - 10; y += 20) {
+        historicalHeatmapData.data.push({ x: x, y: y, count: historicalData[historicalCounter][room.name] });
+      }
+    }
+  }
+
+  $('.time').html(historicalData[historicalCounter].time);
+  var progressBar = $('.progress-bar');
+  progressBar.attr('aria-valuenow', historicalCounter * 10).css('width', historicalCounter * (100/11) + '%');
+
+  if(historicalCounter < 9 && historicalCounter > 3) {
+    progressBar.attr('class', 'progress-bar progress-bar-danger');
+  }
+  if(historicalCounter < 6 || (historicalCounter > 8 && historicalCounter < 10)) {
+    progressBar.attr('class', 'progress-bar progress-bar-warning');
+  }
+  if(historicalCounter < 4 || historicalCounter == 11) {
+    progressBar.attr('class', 'progress-bar progress-bar-info');
+  }
+  heatmapHistorical.store.setDataSet(historicalHeatmapData);
+
+  historicalCounter++;
+}
   // let's get some data
   // var data = {
   //     max: 20,
@@ -219,28 +288,4 @@ function setupHeatmap(element) {
   //     ]
   // };
 
-  // var generateData = function(){
-  //     var max = (Math.random()*100+1) >> 0,
-  //         data = [],
-  //         length = 200,
-  //         width = heatmap.get("width"),
-  //         height = heatmap.get("height");
-
-  //     while(length--){
-  //         data.push({
-  //             x: (Math.random()*width) >> 0,
-  //             y: (Math.random()*height) >> 0,
-  //             count: (Math.random()*max) >> 0
-  //         });
-  //     }
-
-  //     return {
-  //         max: max,
-  //         data: data
-  //     };
-  // };
-
-  // var data = generateData();
-
   //heatmap.store.setDataSet(data);
-}
