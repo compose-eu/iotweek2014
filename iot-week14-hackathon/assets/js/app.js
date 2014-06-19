@@ -20,6 +20,7 @@ var historicalData = [
   { time: '10 pm', ludgate: 17, america: 18, warwick: 16, salisbury: 15 }
 ];
 
+var interval;
 
 $(document).ready(function() {
   init();
@@ -238,8 +239,10 @@ function setupHistoricalHeatmap() {
   };
 
   heatmapHistorical = h337.create(heatmapConfigHist);
-  populateHistoricalData();
-  window.setInterval(function() { populateHistoricalData() }, 1500);
+  if(!interval) {
+    populateHistoricalData();
+    interval = window.setInterval(function() { populateHistoricalData() }, 1500);
+  }
 }
 
 function populateHistoricalData() {
