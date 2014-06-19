@@ -11,6 +11,12 @@
   position: relative;
 }
 
+.progress {
+  width: 789px;
+  display: inline-block;
+  position: relative;
+}
+
 .graph {
   background: #74c9be;
 }

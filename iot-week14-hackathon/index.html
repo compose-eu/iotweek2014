@@ -105,14 +105,36 @@
           </div>
         </div><!-- /row -->
 
-        <div class="row align-center">
-          <h4>Right now</h4>
-          <div id="heatmapArea" class="heatmap">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs map-tabs">
+          <li class="active"><a href="#now" data-toggle="tab">Right Now</a></li>
+          <li><a href="#hist" data-toggle="tab">History</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="now">
+            <div class="row align-center">
+              <h4>Current Readings</h4>
+              <div id="heatmapArea" class="heatmap">
+              </div>
+            </div> <!-- /row -->
           </div>
-        </div> <!-- /row -->
+          <div class="tab-pane" id="hist">
+            <div class="row align-center">
+              <!-- <h4><span class="time"></span></h4> -->
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="120" style="width: 0%;">
+                  <span class="time"></span>
+                </div>
+              </div>
+              <div id="heatmapAreaHist" class="heatmap"></div>
+            </div> <!-- /row -->
+          </div>
+        </div>
 
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs graph-tabs">
           <li class="active"><a href="#temp" data-toggle="tab">Temperature</a></li>
           <li><a href="#press" data-toggle="tab">Pressure</a></li>
           <li><a href="#aq" data-toggle="tab">Air Quality</a></li>
