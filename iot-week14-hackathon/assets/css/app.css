@@ -1,0 +1,51 @@
+.align-center {
+  text-align: center;
+}
+
+.heatmap {
+  width: 789px;
+  display: inline-block;
+  padding: 0;
+  height: 400px;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.graph {
+  background: #74c9be;
+}
+
+canvas {
+  background-image: url(../img/iot-week-map.jpg);
+  border: 1px solid #ccc;
+}
+
+.morris-hover {
+  position: absolute;
+  z-index: 1000;
+}
+.morris-hover.morris-default-style {
+  text-align: center;
+  border-radius: 10px;
+  background-color: #000 !important;
+  font-size: 11px;
+  padding: 4px 10px;
+  border: none !important;
+}
+.morris-hover.morris-default-style .morris-hover-row-label {
+  font-weight: bold;
+  margin: 4px 0;
+  color: #aaa;
+}
+.morris-hover.morris-default-style .morris-hover-point {
+  white-space: nowrap;
+  margin: 2px 0;
+}
+
+.nav-tabs {
+  margin-bottom: 50px;
+}
+
+.mt.spesh {
+  margin-bottom:25px;
+}
