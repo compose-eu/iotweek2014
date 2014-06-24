@@ -6,7 +6,7 @@
 #include "PubSubClient.h"
 
 #define auth_token  "NDJkODA3MGEtOWU1ZS00YTczLThiNmEtZDk0Y2IwMWFmYWM2NDFjNmZjMjMtMmU3NS00ZDM3LWIwMWItMDFmZjJjM2Q4Y2My"
-#define SO_ID "14031007295174e12ee34dd3847acab824cc7a2605920"
+#define SO_ID "14031778325802935250e8de943b2aba131c26c30bcfa"
 
 byte broker_ip[] = {  147, 83, 30, 150 };
 long temp_time = 0;
@@ -50,7 +50,7 @@ void loop(){
      Serial.println("Reading sensor data...");
 
      airQualRaw = analogRead(A6);
-     airQual = airQualRaw / 4000; // Chose 4000 instead of 4094 to ensure int conversion succeeds for close values
+     airQual = airQualRaw / 1000; // Chose 4000 instead of 4094 to ensure int conversion succeeds for close values
      Serial.println(String(airQualRaw));     
      float temperature = bmp.readTemperature();
      float pressure = bmp.readPressure();
